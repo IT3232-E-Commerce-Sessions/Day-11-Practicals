@@ -51,4 +51,14 @@ public class DepartmentController {
         service.deleteDept(id);
         return new ResponseEntity<>("Department with ID " + id + " deleted successfully", HttpStatus.OK);
     }
+    
+    @GetMapping("/names")
+    public ResponseEntity<List<String>> getAllDepnames() {
+        return new ResponseEntity<List<String>>(service.getDepartmentNames(), HttpStatus.OK);
+    }
+    
+    @GetMapping("/names/{nm}")
+    public ResponseEntity<List<Department>> searchDeptName(@PathVariable String nm) {
+        return new ResponseEntity<List<Department>>(service.searchDeptName(nm), HttpStatus.OK);
+    }
 }

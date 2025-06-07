@@ -13,6 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class DepartmentService {
+
     @Autowired
     private DepartmentRepo repo;
 
@@ -21,13 +22,12 @@ public class DepartmentService {
     }
 
     public Department getDept(int id) {
-		if(repo.findById(id).isEmpty()) {
-			throw new EntityNotFoundException("Department not found");
-		}
-		return repo.findById(id).get();
-	}
-    
-    
+        if (repo.findById(id).isEmpty()) {
+            throw new EntityNotFoundException("Department not found");
+        }
+        return repo.findById(id).get();
+    }
+
     public String addDept(Department department) {
         if (repo.findById(department.getId()).isPresent()) {
             throw new DuplicateKeyException("Department ID already exists: " + department.getId());
@@ -49,17 +49,17 @@ public class DepartmentService {
         return repo.save(existingDept);
     }
 
-    public List<String>getDepartmentNames(){
-    	if(repo.getDeptNames().isEmpty()) {
-    		throw new EntityNotFoundException("Department not found");
-    	}
-    	return repo.getDeptNames();
+    public List<String> getDepartmentNames() {
+        if (repo.getDeptNames().isEmpty()) {
+            throw new EntityNotFoundException("Department not found");
+        }
+        return repo.getDeptNames();
     }
-    
-    public List<Department>searchDeptName(String name){
-    	if(repo.searchname(name).isEmpty()) {
-    		throw new EntityNotFoundException("Department not found");
-    	}
-    	return repo.searchname(name);
+
+    public List<Department> searchDeptName(String name) {
+        if (repo.searchname(name).isEmpty()) {
+            throw new EntityNotFoundException("Department not found");
+        }
+        return repo.searchname(name);
     }
 }
