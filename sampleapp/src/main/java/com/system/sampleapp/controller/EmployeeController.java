@@ -19,9 +19,10 @@ import com.system.sampleapp.service.EmployeeService;
 @RestController
 @RequestMapping("/emp")
 public class EmployeeController {
-	@Autowired
+
+    @Autowired
     private EmployeeService service;
-    
+
     @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployee() {
         return new ResponseEntity<List<Employee>>(service.getEmps(), HttpStatus.OK);
@@ -29,21 +30,21 @@ public class EmployeeController {
     
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEMployeeById(String id) {
-    	return new ResponseEntity<Employee>(service.getEmp(id),HttpStatus.OK);
+        return new ResponseEntity<>(service.getEmp(id), HttpStatus.OK);
     }
-    
+
     @PostMapping
     public ResponseEntity<String> createEmployee(@RequestBody Employee employee) {
-		return new ResponseEntity<String>(service.addEMp(employee), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.addEMp(employee), HttpStatus.CREATED);
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(
-            @PathVariable String id, 
+            @PathVariable String id,
             @RequestBody Employee updatedEmployee) {
-    	return new ResponseEntity<Employee>(service.updateEmpt(id, updatedEmployee),HttpStatus.OK);
+        return new ResponseEntity<>(service.updateEmpt(id, updatedEmployee), HttpStatus.OK);
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable String id) {
         service.deleteEmp(id);
